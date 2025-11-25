@@ -38,3 +38,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+/.idea/inspectionProfiles/Project_Default.xml
+/.idea/vcs.xml
+/.idea/modules.xml
+/.idea/AI-flashcard-deepseek.iml
+/.swc/plugins/v7_windows_x86_64_0.104.8/8be728499de3a4274cc24e6d73099f2a8b59a7a2650b667319d8783571923e4d
+/.idea/.gitignore

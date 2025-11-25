@@ -63,12 +63,21 @@ export async function getDeepseekFlashcards(prompt: string, systemPrompt: string
   }
 
   const data = await response.json();
-  const content = data.choices[0].message.content.trim();
+  let content = data.choices[0].message.content.trim();
   
+  // 尝试从响应中提取纯JSON
   try {
+    // 查找第一个 [ 和最后一个 ] 之间的内容
+    const jsonStart = content.indexOf('[');
+    const jsonEnd = content.lastIndexOf(']');
+    
+    if (jsonStart !== -1 && jsonEnd !== -1 && jsonEnd > jsonStart) {
+      content = content.substring(jsonStart, jsonEnd + 1);
+    }
+    
     return JSON.parse(content);
   } catch (error) {
     console.error('解析JSON失败:', content);
-    throw new Error('AI返回的数据格式不正确');
+    throw new Error('AI返回的数据格式不正确: ' + content);
   }
 }

@@ -1,0 +1,22 @@
+export default {
+  pages: [
+    'pages/index/index'
+  ],
+  window: {
+    backgroundTextStyle: 'light',
+    navigationBarBackgroundColor: '#fff',
+    navigationBarTitleText: 'AI智能闪卡',
+    navigationBarTextStyle: 'black'
+  },
+  permission: {
+    'scope.userLocation': {
+      desc: '你的位置信息将用于小程序位置接口的效果展示'
+    }
+  },
+  requiredBackgroundModes: ['audio'],
+  networkTimeout: {
+    request: 10000,
+    downloadFile: 10000
+  },
+  debug: false
+}

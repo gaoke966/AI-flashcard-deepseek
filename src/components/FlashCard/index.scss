@@ -1,0 +1,41 @@
+.flashcard {
+  margin: 0 auto;
+  max-width: 100%;
+}
+
+.flashcard-content {
+  padding: 16px;
+}
+
+.question-section,
+.answer-section {
+  margin-bottom: 16px;
+}
+
+.section-title {
+  display: block;
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.question-content {
+  background-color: #f0f9ff;
+  padding: 16px;
+  border-radius: 8px;
+  border-left: 4px solid #3b82f6;
+}
+
+.answer-content {
+  background-color: #f0fdf4;
+  padding: 16px;
+  border-radius: 8px;
+  border-left: 4px solid #22c55e;
+}
+
+.toggle-button {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
