@@ -1,6 +1,0 @@
-{
-  "navigationBarTitleText": "Token调试",
-  "usingComponents": {
-    "cu-custom": "/colorui/components/cu-custom"
-  }
-}
