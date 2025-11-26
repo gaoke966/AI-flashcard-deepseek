@@ -4,8 +4,10 @@
 
 <view class="UCenter-bg">
 	<view class="userinfo">
-		<button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"
+		<!-- 如果没有用户信息，显示登录按钮 -->
+		<button wx:if="{{!hasUserInfo}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"
 			style="margin-bottom:10px;">一键登录</button>
+		<!-- 如果有用户信息，显示用户头像和昵称 -->
 		<block wx:else>
 			<navigator class="content" url="/pages/profile/profile" hover-class="none">
 				<image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
@@ -137,6 +139,13 @@
 				<text class="cuIcon-pay"></text>
 				<text class="text-gray">使用说明</text>
 			</navigator>
+		</view>
+
+		<view class="cu-item arrow">
+			<view class="content" bindtap="exit">
+				<text class="cuIcon-closefill text-red"></text>
+				<text class="text-gray text-red">退出登录</text>
+			</view>
 		</view>
 
 		<!-- <view class="cu-item arrow">

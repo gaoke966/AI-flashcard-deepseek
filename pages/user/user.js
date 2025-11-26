@@ -9,50 +9,81 @@ Page({
         count:null
     },
 
-  exit:function(){
+  exit: function(){
+    console.log('退出登录');
+    // 清除全局用户信息
+    app.globalData.userInfo = null;
+    app.globalData.token = null;
+    app.globalData.openid = null;
+    
+    // 清除本地存储
+    wx.clearStorageSync();
+    
+    // 更新页面状态
     this.setData({
       hasUserInfo: false,
       userInfo: {},
-      canIUse: wx.canIUse('button.open-type.getUserInfo')
-    })
+      count: null
+    });
+    
+    wx.showToast({
+      title: '已退出登录',
+      icon: 'success',
+      duration: 1500
+    });
   },
 
     onLoad: function () {
+        console.log('用户页面加载，当前用户信息状态:', app.globalData.userInfo);
+        
         if (app.globalData.userInfo) {
             this.setData({
                 userInfo: app.globalData.userInfo,
                 hasUserInfo: true
-            })
+            });
         } else if (this.data.canIUse) {
+            // 兼容旧版本，等待用户授权
             app.userInfoReadyCallback = res => {
+                console.log('用户授权回调:', res.userInfo);
                 this.setData({
                     userInfo: res.userInfo,
                     hasUserInfo: true
-                })
+                });
             }
         } else {
+            // 直接获取用户信息
             wx.getUserInfo({
                 success: res => {
-                    app.globalData.userInfo = res.userInfo
+                    console.log('直接获取用户信息:', res.userInfo);
+                    app.globalData.userInfo = res.userInfo;
                     this.setData({
                         userInfo: res.userInfo,
                         hasUserInfo: true
-                    })
+                    });
+                },
+                fail: err => {
+                    console.error('获取用户信息失败:', err);
                 }
-            })
-
+            });
         }
-
     },
     getUserInfo: function (e) {
-        app.globalData.userInfo = e.detail.userInfo
+        console.log('获取用户信息:', e.detail.userInfo);
+        app.globalData.userInfo = e.detail.userInfo;
         this.setData({
             userInfo: e.detail.userInfo,
             hasUserInfo: true
-        })
-      wx.reLaunch({
-        url: '/pages/user/user'
-      })
+        });
+        
+        // 登录成功后获取用户统计信息
+        this.getCountMethods();
+        
+        // 提示登录成功
+        wx.showToast({
+            title: '登录成功',
+            icon: 'success',
+            duration: 1500
+        });
     },
 
     getCountMethods:function(){
@@ -75,6 +106,15 @@ Page({
 
     onShow(){
         var that = this;
+        
+        // 检查全局用户信息状态
+        if (app.globalData.userInfo && !this.data.hasUserInfo) {
+            this.setData({
+                userInfo: app.globalData.userInfo,
+                hasUserInfo: true
+            });
+        }
+        
         this.getCountMethods()
     },
 

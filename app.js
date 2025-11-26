@@ -102,20 +102,35 @@ App({
       }
     })
 
-    wx.getSetting({
-      success: res => {
-        if (res.authSetting['scope.userInfo']) {
-          wx.getUserInfo({
-            success: res => {
-              this.globalData.userInfo = res.userInfo
-              if (this.userInfoReadyCallback) {
-                this.userInfoReadyCallback(res)
+    // 检查是否支持 getSetting API
+    if (wx.getSetting) {
+      wx.getSetting({
+        success: res => {
+          console.log('获取设置结果:', res.authSetting);
+          if (res.authSetting['scope.userInfo']) {
+            wx.getUserInfo({
+              success: res => {
+                console.log('已授权，获取用户信息:', res.userInfo);
+                this.globalData.userInfo = res.userInfo
+                if (this.userInfoReadyCallback) {
+                  this.userInfoReadyCallback(res)
+                }
+              },
+              fail: err => {
+                console.error('获取用户信息失败:', err);
               }
-            }
-          })
+            })
+          } else {
+            console.log('用户未授权');
+          }
+        },
+        fail: err => {
+          console.warn('获取设置失败，可能是开发环境限制:', err);
         }
-      }
-    })
+      })
+    } else {
+      console.log('当前环境不支持 getSetting API，跳过权限检查');
+    }
   },
 
   getUserToken: function(cb) {
