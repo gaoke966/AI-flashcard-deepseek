@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "数据加载测试",
+  "usingComponents": {
+    "cu-custom": "/colorui/components/cu-custom"
+  }
+}

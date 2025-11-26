@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "强制Token设置",
+  "usingComponents": {
+    "cu-custom": "/colorui/components/cu-custom"
+  }
+}

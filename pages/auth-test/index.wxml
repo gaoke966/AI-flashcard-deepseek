@@ -1,0 +1,115 @@
+<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
+  <view slot="back-text">返回</view>
+  <view slot="content">认证测试</view>
+</cu-custom>
+
+<view class="cu-card article">
+  <view class="cu-item shadow">
+    <view class="title">
+      <view class="text-cut">平台信息</view>
+    </view>
+    <view class="content">
+      <view class="desc">
+        <text class="text-content">{{platformInfo}}</text>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class="cu-card article">
+  <view class="cu-item shadow">
+    <view class="title">
+      <view class="text-cut">当前Token</view>
+    </view>
+    <view class="content">
+      <view class="desc">
+        <view class="padding-sm bg-blue light">
+          <text class="text-cut text-blue">{{token || '暂无Token'}}</text>
+        </view>
+        <view class="padding-sm flex justify-between">
+          <button class="cu-btn bg-blue sm" bindtap="copyToken" disabled="{{!token}}">
+            <text class="cuIcon-copy"></text>复制
+          </button>
+          <button class="cu-btn bg-red sm" bindtap="clearAuth" disabled="{{!token}}">
+            <text class="cuIcon-close"></text>清除
+          </button>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class="cu-bar bg-white solid-bottom margin-top">
+  <view class="action">
+    <text class="cuIcon-title text-blue"></text>认证测试
+  </view>
+</view>
+
+<view class="cu-list menu">
+  <view class="cu-item" bindtap="testGetToken">
+    <view class="content">
+      <text class="cuIcon-safe text-blue"></text>
+      <text class="text-grey">测试App.getUserToken</text>
+    </view>
+    <view class="action">
+      <text class="cuIcon-right text-gray"></text>
+    </view>
+  </view>
+  
+  <view class="cu-item" bindtap="testAuthManager">
+    <view class="content">
+      <text class="cuIcon-safe text-green"></text>
+      <text class="text-grey">测试AuthManager</text>
+    </view>
+    <view class="action">
+      <text class="cuIcon-right text-gray"></text>
+    </view>
+  </view>
+  
+  <view class="cu-item" bindtap="testPlatformDetection">
+    <view class="content">
+      <text class="cuIcon-phone text-orange"></text>
+      <text class="text-grey">测试平台检测</text>
+    </view>
+    <view class="action">
+      <text class="cuIcon-right text-gray"></text>
+    </view>
+  </view>
+  
+  <view class="cu-item" bindtap="testWxLogin">
+    <view class="content">
+      <text class="cuIcon-weixin text-green"></text>
+      <text class="text-grey">测试wx.login</text>
+    </view>
+    <view class="action">
+      <text class="cuIcon-right text-gray"></text>
+    </view>
+  </view>
+</view>
+
+<view class="cu-bar bg-white solid-bottom margin-top">
+  <view class="action">
+    <text class="cuIcon-text text-blue"></text>操作日志
+    <view class="action">
+      <button class="cu-btn bg-gray sm" bindtap="clearLogs">
+        <text class="cuIcon-delete"></text>清空
+      </button>
+    </view>
+  </view>
+</view>
+
+<view class="cu-card">
+  <view class="cu-item">
+    <view class="content">
+      <scroll-view scroll-y style="max-height: 300px;">
+        <view class="text-gray text-sm">
+          <view wx:for="{{logs}}" wx:key="*this" class="padding-xs">
+            {{item}}
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+</view>
+
+<view class="cu-tabbar-height"></view>

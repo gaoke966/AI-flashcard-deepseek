@@ -1,0 +1,81 @@
+/* 多端平台适配样式 */
+
+/* 微信小程序特有样式 */
+/* #ifdef MP-WEIXIN */
+.cu-custom {
+  padding-top: var(--status-bar-height);
+}
+/* #endif */
+
+/* 支付宝小程序特有样式 */
+/* #ifdef MP-ALIPAY */
+.cu-custom {
+  padding-top: 44px;
+}
+/* #endif */
+
+/* 百度小程序特有样式 */
+/* #ifdef MP-BAIDU */
+.cu-custom {
+  padding-top: 44px;
+}
+/* #endif */
+
+/* 字节跳动小程序特有样式 */
+/* #ifdef MP-TOUTIAO */
+.cu-custom {
+  padding-top: 44px;
+}
+/* #endif */
+
+/* QQ小程序特有样式 */
+/* #ifdef MP-QQ */
+.cu-custom {
+  padding-top: 44px;
+}
+/* #endif */
+
+/* H5特有样式 */
+/* #ifdef H5 */
+.cu-custom {
+  padding-top: 44px;
+}
+
+.nav-list {
+  max-width: 750px;
+  margin: 0 auto;
+}
+/* #endif */
+
+/* App特有样式 */
+/* #ifdef APP-PLUS */
+.cu-custom {
+  padding-top: var(--status-bar-height);
+}
+/* #endif */
+
+/* 通用平台差异适配 */
+/* #ifndef MP-WEIXIN */
+/* 非微信小程序的样式适配 */
+.add_btn {
+  bottom: 80px; /* 非微信小程序可能需要调整底部距离 */
+}
+/* #endif */
+
+/* #ifdef H5 */
+/* H5端特有适配 */
+.add_btn {
+  bottom: 100px; /* H5端可能有浏览器导航栏 */
+}
+
+.tab-bar-height {
+  height: 50px; /* H5端TabBar高度适配 */
+}
+/* #endif */
+
+/* #ifdef APP-PLUS */
+/* App端特有适配 */
+.add_btn {
+  bottom: 70px; /* App端底部安全区域适配 */
+}
+/* #endif */

@@ -1,0 +1,124 @@
+<cu-custom bgColor="bg-gradual-purple" isBack="{{true}}">
+  <view slot="back-text">返回</view>
+  <view slot="content">多端测试</view>
+</cu-custom>
+
+<view class="cu-card article">
+  <view class="cu-item shadow">
+    <view class="title">
+      <view class="text-cut">平台信息</view>
+    </view>
+    <view class="content">
+      <view class="desc">
+        <text class="text-content">{{platformInfo}}</text>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class="cu-bar bg-white solid-bottom margin-top">
+  <view class="action">
+    <text class="cuIcon-title text-purple"></text>功能测试
+    <view class="action">
+      <button class="cu-btn bg-purple sm" bindtap="runAllTests">
+        <text class="cuIcon-play"></text>全部测试
+      </button>
+      <button class="cu-btn bg-gray sm" bindtap="clearResults">
+        <text class="cuIcon-delete"></text>清空
+      </button>
+    </view>
+  </view>
+</view>
+
+<view class="cu-list menu">
+  <view class="cu-item" bindtap="testNetworkStatus">
+    <view class="content">
+      <text class="cuIcon-wifi text-blue"></text>
+      <text class="text-grey">网络状态检测</text>
+    </view>
+    <view class="action">
+      <text class="cuIcon-right text-gray"></text>
+    </view>
+  </view>
+  
+  <view class="cu-item" bindtap="testNetworkRequest">
+    <view class="content">
+      <text class="cuIcon-send text-green"></text>
+      <text class="text-grey">网络请求测试</text>
+    </view>
+    <view class="action">
+      <text class="cuIcon-right text-gray"></text>
+    </view>
+  </view>
+  
+  <view class="cu-item" bindtap="testStorage">
+    <view class="content">
+      <text class="cuIcon-storage text-orange"></text>
+      <text class="text-grey">存储功能测试</text>
+    </view>
+    <view class="action">
+      <text class="cuIcon-right text-gray"></text>
+    </view>
+  </view>
+  
+  <view class="cu-item" bindtap="testNavigation">
+    <view class="content">
+      <text class="cuIcon-notification text-red"></text>
+      <text class="text-grey">导航功能测试</text>
+    </view>
+    <view class="action">
+      <text class="cuIcon-right text-gray"></text>
+    </view>
+  </view>
+</view>
+
+<view class="cu-bar bg-white solid-bottom margin-top">
+  <view class="action">
+    <text class="cuIcon-check text-green"></text>测试结果
+  </view>
+</view>
+
+<view class="cu-card">
+  <view class="cu-item">
+    <view class="content">
+      <scroll-view scroll-y style="max-height: 200px;">
+        <view class="padding-sm">
+          <view class="cu-list menu">
+            <view class="cu-item" wx:for="{{testResults}}" wx:key="*this" wx:for-item="result">
+              <view class="content">
+                <text class="text-{{result.status === 'success' ? 'green' : result.status === 'warning' ? 'orange' : 'red'}}">
+                  {{result.test}}: {{result.result}}
+                </text>
+              </view>
+              <view class="action">
+                <text class="cuIcon-{{result.status === 'success' ? 'check' : result.status === 'warning' ? 'info' : 'close'}} text-{{result.status === 'success' ? 'green' : result.status === 'warning' ? 'orange' : 'red'}}"></text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+</view>
+
+<view class="cu-bar bg-white solid-bottom margin-top">
+  <view class="action">
+    <text class="cuIcon-text text-blue"></text>测试日志
+  </view>
+</view>
+
+<view class="cu-card">
+  <view class="cu-item">
+    <view class="content">
+      <scroll-view scroll-y style="max-height: 300px;">
+        <view class="text-gray text-sm">
+          <view wx:for="{{logs}}" wx:key="*this" class="padding-xs">
+            {{item}}
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+</view>
+
+<view class="cu-tabbar-height"></view>
